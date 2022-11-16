@@ -32,37 +32,41 @@ window.addEventListener('submit', () => {
 
     const forms = document.forms
     const atividade = forms.todolist.novaatividade
-    const linhaCriada = document.createElement('tr')
-    const colunaCriada = document.createElement('td')
-    colunaCriada.setAttribute('contenteditable', 'false')
-    colunaCriada.innerText = atividade.value;
-    colunaCriada.style.minWidth = "200px"
-    colunaCriada.style.maxWidth = "200px"
 
-    atividade.value = ''
-
-    const botaoCriado = document.createElement('td')
-    var input = document.createElement("input");
-    input.type = 'button';
-    input.value = 'Deletar'
-    input.setAttribute('onclick', 'deleteRow(this)')
-
-
-    const botaoEditar = document.createElement('td')
-    var editar = document.createElement("input");
-    editar.type = 'button';
-    editar.value = 'Editar'
-    editar.setAttribute('onclick', 'editcontent(this)')
-
-    table.appendChild(linhaCriada)
-    linhaCriada.appendChild(colunaCriada)
-    botaoCriado.appendChild(input)
-    linhaCriada.appendChild(botaoCriado)
-    botaoEditar.appendChild(editar)
-    linhaCriada.appendChild(botaoEditar)
-    h6.before(table)
-    contador++
-    contadorDeAtividades()
+    if(atividade.value.length != 0){
+        const linhaCriada = document.createElement('tr')
+        const colunaCriada = document.createElement('td')
+        colunaCriada.setAttribute('contenteditable', 'false')
+        colunaCriada.innerText = atividade.value;
+        colunaCriada.style.minWidth = "200px"
+        colunaCriada.style.maxWidth = "200px"
+    
+        atividade.value = ''
+    
+        const botaoCriado = document.createElement('td')
+        var input = document.createElement("input");
+        input.type = 'button';
+        input.value = 'Deletar'
+        input.setAttribute('onclick', 'deleteRow(this)')
+    
+    
+        const botaoEditar = document.createElement('td')
+        var editar = document.createElement("input");
+        editar.type = 'button';
+        editar.value = 'Editar'
+        editar.setAttribute('onclick', 'editcontent(this)')
+    
+        table.appendChild(linhaCriada)
+        linhaCriada.appendChild(colunaCriada)
+        botaoCriado.appendChild(input)
+        linhaCriada.appendChild(botaoCriado)
+        botaoEditar.appendChild(editar)
+        linhaCriada.appendChild(botaoEditar)
+        h6.before(table)
+        contador++
+        contadorDeAtividades()
+    }
+    
 })
 
 var editando = false;
