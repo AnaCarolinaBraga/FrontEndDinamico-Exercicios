@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>To do list</title>
+</head>
+<body>
+    <div id="root">
+        <h1>Lista de Atividades</h1>
+        <h5 style="color: #D7D6D6">Ana Carolina Martins Braga | Módulo de Front-end Dinâmico</h5>
+        <form name="todolist" onsubmit="return false">
+            <input type="text" name="novaatividade" placeholder="Nova atividade" id="novaatividade">
+            <input type="submit" value="+">
+            <p id="contagemCaracteres" style="margin-top: 0px;">0/20</p>
+        </form>
+        <table id="tabelaAtividades" class="center">
+        </table>
+    </div>
+    <div>
+        <button onclick="ClearAll()">Limpar tudo</button>
+
+    </div>
+</body>
+</html>
