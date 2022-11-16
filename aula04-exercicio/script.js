@@ -1,19 +1,15 @@
 const root = document.getElementById('root')
-
 const div = document.createElement('div')
-
 const h6 = document.createElement('h6')
 var texto2 = document.createTextNode('Você não tem atividades')
-
 const table = document.getElementById('tabelaAtividades')
-
 var contagemCaractere = document.getElementById("contagemCaracteres")
 var inputAtividade = document.getElementById("novaatividade")
 
-var contador = 0;
+var contadorTarefas = 0;
 var contaLetras = 0;
 
-inputAtividade.addEventListener('keydown', function (e) {
+inputAtividade.addEventListener('keypress', function (e) {
     var char = e.keyCode || e.which;
     if (contaLetras > 19 && char !=8 && char != 46) {
         e.preventDefault()
@@ -37,7 +33,7 @@ window.addEventListener('submit', () => {
         const linhaCriada = document.createElement('tr')
         const colunaCriada = document.createElement('td')
         colunaCriada.setAttribute('contenteditable', 'false')
-        colunaCriada.innerText = atividade.value;
+        colunaCriada.innerText = atividade.value.trim();
         colunaCriada.style.minWidth = "200px"
         colunaCriada.style.maxWidth = "200px"
     
@@ -63,7 +59,7 @@ window.addEventListener('submit', () => {
         botaoEditar.appendChild(editar)
         linhaCriada.appendChild(botaoEditar)
         h6.before(table)
-        contador++
+        contadorTarefas++
         contadorDeAtividades()
     }
     
@@ -95,7 +91,7 @@ function editcontent(r) {
 function deleteRow(r) {
     var i = r.parentNode.parentNode.rowIndex;
     tabelaAtividades.deleteRow(i);
-    contador--
+    contadorTarefas--
     contadorDeAtividades()
 }
 
@@ -107,18 +103,18 @@ function ClearAll() {
         tabelaAtividades.removeChild(tableRows[x]);
     }
 
-    contador = 0
+    contadorTarefas = 0
     contadorDeAtividades()
 }
 
 function contadorDeAtividades() {
 
-    if (contador == 0) {
+    if (contadorTarefas == 0) {
         texto2.textContent = 'Você não tem atividades'
-    } else if (contador == 1) {
-        texto2.textContent = "Você tem " + contador + " atividade"
+    } else if (contadorTarefas == 1) {
+        texto2.textContent = "Você tem " + contadorTarefas + " atividade"
     } else {
-        texto2.textContent = "Você tem " + contador + " atividades"
+        texto2.textContent = "Você tem " + contadorTarefas + " atividades"
     }
 }
 
