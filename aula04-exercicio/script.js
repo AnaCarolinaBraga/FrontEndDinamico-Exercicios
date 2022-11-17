@@ -8,8 +8,12 @@ var inputAtividade = document.getElementById("novaatividade")
 
 var contadorTarefas = 0;
 var contaLetras = 0;
+var editando = false;
 
-inputAtividade.addEventListener('keypress', function (e) {
+inputAtividade.addEventListener('keypress', (e) => charCount(e));
+window.addEventListener('submit', () => createCompleteRow())
+
+function charCount(e){
     var char = e.keyCode || e.which;
     if (contaLetras > 19 && char !=8 && char != 46) {
         e.preventDefault()
@@ -19,9 +23,9 @@ inputAtividade.addEventListener('keypress', function (e) {
         contaLetras = inputAtividade.value.length;
     }
     contagemCaractere.textContent = contaLetras + "/20"
-});
+}
 
-window.addEventListener('submit', () => {
+function createCompleteRow(){
     contaLetras = 0;
     contagemCaractere.textContent = contaLetras + "/20";
     contagemCaractere.style.color = "black"
@@ -33,11 +37,12 @@ window.addEventListener('submit', () => {
         const linhaCriada = document.createElement('tr')
         const colunaCriada = document.createElement('td')
         colunaCriada.setAttribute('contenteditable', 'false')
-        colunaCriada.innerText = atividade.value.trim();
+        colunaCriada.innerText = atividade.value;
         colunaCriada.style.minWidth = "200px"
         colunaCriada.style.maxWidth = "200px"
     
         atividade.value = ''
+        atividade.focus()
     
         const botaoCriado = document.createElement('td')
         var input = document.createElement("input");
@@ -62,10 +67,7 @@ window.addEventListener('submit', () => {
         contadorTarefas++
         contadorDeAtividades()
     }
-    
-})
-
-var editando = false;
+}
 
 function editcontent(r) {
 
@@ -75,6 +77,7 @@ function editcontent(r) {
     } else {
         var i = r.parentNode.parentNode;
         i.firstChild.setAttribute("contentEditable", "true")
+        i.firstChild.focus()
     }
 
     if (editando) {
@@ -117,8 +120,6 @@ function contadorDeAtividades() {
         texto2.textContent = "Você tem " + contadorTarefas + " atividades"
     }
 }
-
-
 
 h6.appendChild(texto2)
 root.appendChild(h6)
